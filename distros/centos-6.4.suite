@@ -1,0 +1,22 @@
+name = CentOS
+release = 6.4
+
+gpg_key =  gpg/RPM-GPG-KEY-CentOS-6
+gpg_key ?= gpg/RPM-GPG-KEY-CentOS-Security-6
+
+packages = packages/${suite}.list
+
+[post_install]
+finalize = scripts/fix_rpmdb.py
+finalize = scripts/clean_yumbootstrap.py
+
+[repositories]
+centos         = http://vault.centos.org/6.4/os/$basearch/
+centos-updates = http://vault.centos.org/6.4/updates/$basearch/
+
+[environment]
+#PYTHONPATH=...
+#PYTHONPATH
+#SUDO_*
+
+# vim:ft=dosini
